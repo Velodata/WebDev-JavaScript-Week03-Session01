@@ -1,0 +1,99 @@
+<!-- # 📡 jQuery, AJAX, Radio Buttons & CSS Example
+
+This example demonstrates:
+- ✅ **Radio buttons stacked vertically** using **CSS**.
+- ✅ **jQuery AJAX request** to fetch a **random user**.
+- ✅ **Dynamic user display** based on selected gender.
+
+---
+
+## 📜 HTML, CSS & jQuery Code
+```html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery AJAX & Radio Buttons</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Center everything */
+        body {
+            font-family: Arial, sans-serif; 
+            text-align: center;
+            margin: 150px;
+        }
+
+        /* Style the radio button container */
+        .radio-group {
+            display: flex;
+            flex-direction: column;  /* Stacks buttons vertically */
+            align-items: center;     /* Center-aligns the labels */
+            gap: 10px;               /* Adds spacing between buttons */
+            margin-bottom: 20px;
+        }
+
+        /* Style buttons */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Style user info display */
+        #userInfo {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Get a Random User</h1>
+
+    <!-- Radio Buttons in Vertical Layout -->
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="gender" value="male" checked> Male
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female"> Female
+        </label>
+    </div>
+
+    <button id="fetchUser">Fetch User</button>
+
+    <p id="userInfo">Select a gender and click the button.</p>
+
+    <script>
+        $(document).ready(function() {
+            $("#fetchUser").click(function() {
+                var selectedGender = $("input[name='gender']:checked").val();
+
+                $.ajax({
+                    url: "https://randomuser.me/api/?gender=" + selectedGender,
+                    method: "GET",
+                    success: function(data) {
+                        var user = data.results[0];
+                        var fullName = user.name.first + " " + user.name.last;
+                        $("#userInfo").html("User: <b>" + fullName + "</b> (" + selectedGender + ")");
+                    },
+                    error: function() {
+                        $("#userInfo").html("Error fetching user.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
