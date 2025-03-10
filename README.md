@@ -1,12 +1,6 @@
-# WebDev-JavaScript-Week03-Session01
+# Week 03 - JavaScript Events
 
 In this lesson we will learn a bit about JavaScript Events,  and how to use jQuery ajax to download data.
-
-
-
-
-
-# Week 03 - JavaScript Events
 
 Events are a super important tool in JavaScript. They allow web pages to "react" to a user's decisions.
 
@@ -32,52 +26,51 @@ Examples of HTML events:
 -   When an HTML form is submitted
 -   When a user strokes a key
 
--   A string (or a text string) is a series of characters like `John Doe`
--   Strings are written with quotes. You can use single or double quotes:
--   For example:
+In this example, the content of the <h1> element is changed when a user clicks on it:
 
-    ```js
-    // Using double quotes:
-    let carName1 = "Volvo XC60";
+## 📌 Query & AJAX Example
 
-    // Using single quotes:
-    let carName2 = "Volvo XC60";
-    ```
+This example shows how to use **jQuery** to fetch data from an external API using AJAX.
 
--   You can use quotes inside a string, as long as they don't match the quotes surrounding the string:
+## 📜 HTML & jQuery Code
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery AJAX Example</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
 
--   For Example: You can double quotes insides single quotes, or single quotes inside double quotes:
+    <h1>Random User Generator</h1>
+    <button id="fetchUser">Get Random User</button>
+    <p id="userInfo">Click the button to fetch a user.</p>
 
-    ```js
-    // Single quote inside double quotes:
-    let answer1 = "It's alright";
+    <script>
+        $(document).ready(function() {
+            $("#fetchUser").click(function() {
+                $.ajax({
+                    url: "https://randomuser.me/api/",
+                    method: "GET",
+                    success: function(data) {
+                        var user = data.results[0];
+                        var fullName = user.name.first + " " + user.name.last;
+                        $("#userInfo").html("User: <b>" + fullName + "</b>");
+                    },
+                    error: function() {
+                        $("#userInfo").html("Error fetching user.");
+                    }
+                });
+            });
+        });
+    </script>
 
-    // Single quotes inside double quotes:
-    let answer2 = "He is called 'Johnny'";
+</body>
+</html>
 
-    // Double quotes inside single quotes:
-    let answer3 = 'He is called "Johnny"';
-    ```
 
-## 📌 JavaScript Numbers
-
--   All JavaScript numbers are stored as decimal numbers (floating point).
--   Numbers can be written with, or without decimals:
--   For example: The following statements are equivalent in JavaScript:
-
-    ```js
-    // With decimals:
-    let x1 = 34.0;
-
-    // Without decimals:
-    let x2 = 34;
-    ```
-
-    ### Exponential Notation
-
-    Extra large or extra small numbers can be written with scientific (exponential) notation:
-
-    A good practice is to put spaces around operators ( = + - \* / ):
 
     For example:
 
