@@ -168,19 +168,21 @@ A JavaScript function can also be defined using an expression.
 A function expression can be stored in a variable:
 
 ```js
-const x = function (a, b) {return a * b};
-
+const x = function (a, b) {
+	return a * b;
+};
 ```
 
 After a function expression has been stored in a variable, the variable can be used as a function:
+
 -   Example
 
 ```js
-const x = function (a, b) {return a * b};
-let z = x(4, 3); 
+const x = function (a, b) {
+	return a * b;
+};
+let z = x(4, 3);
 ```
-
-
 
 &nbsp;
 
@@ -194,11 +196,10 @@ In this next example we can how a variable `x` gets created by feeding it the ou
 
 ```js
 function myFunction(a, b) {
-return a * b;
+	return a * b;
 }
-let x = myFunction(4, 3); 
+let x = myFunction(4, 3);
 ```
-
 
 &nbsp;
 
@@ -208,37 +209,109 @@ let x = myFunction(4, 3);
 
 A JavaScript function does not perform any checking on parameter values (arguments)
 
+Function **parameters** are the **names** listed in the function definition.
+
+Function **arguments** are the real **values** passed to (and received by) the function.
+
 -   JavaScript function definitions do not specify data types for parameters.
 
 -   JavaScript functions do not perform type checking on the passed arguments.
 
 -   JavaScript functions do not check the number of arguments received.
 
-
 ```js
 function F0_Populate_ChildDataTable(laRowData, lcAction) {
+	if ($.fn.DataTable.isDataTable("#ChildDataTable")) {
+		//  YES!  initialised
+		$("#ChildDataTableContainer").empty();
+		$("#ChildDataTableContainer").append(F0_FormatChildDataTable());
+	}
 
-    if ($.fn.DataTable.isDataTable('#ChildDataTable')) //  YES!  initialised
-    {
-        $("#ChildDataTableContainer").empty();
-        $("#ChildDataTableContainer").append(F0_FormatChildDataTable());
-    }
-
-    var lcString = laRowData[0];
-    $("#Modal_Tyres_Single_Logo").attr('src', '/assets/img/LOGO_LARGE_' + lcString.toUpperCase() + '.png');
-    F0_Ajax_ChildDataTable(laRowData, lcAction);
-    format_column_width();
-
+	var lcString = laRowData[0];
+	$("#Modal_Tyres_Single_Logo").attr("src", "/assets/img/LOGO_LARGE_" + lcString.toUpperCase() + ".png");
+	F0_Ajax_ChildDataTable(laRowData, lcAction);
+	format_column_width();
 }
 ```
 
+&nbsp;
 
+&nbsp;
 
+## 📌 Calling a JavaScript Function
 
+The code inside a JavaScript function will execute when "something" invokes it.
 
+The code inside a function is not executed when the function is **defined**.
 
+The code inside a function is executed when the function is **invoked**.
 
+It's really common to use the term **"call a function"** instead of **"invoke a function"**.
 
+-   Invoking a Function as a Function
+
+```js
+function myFunction(a, b) {
+	return a * b;
+}
+
+myFunction(10, 2); // Will return 20
+```
+
+The function above does not belong to any object. But in JavaScript there is always a default global object.
+
+In HTML the default global object is the HTML page itself, so the function above "belongs" to the HTML page.
+
+In a browser the page object is the browser window. The function above automatically becomes a window function.
+
+&nbsp;
+
+&nbsp;
+
+## 📌 What is the `this` object?
+
+In JavaScript, the `this` keyword refers to an object.
+
+Which object depends on how `this` is being invoked (used or called).
+
+The `this` keyword refers to different objects depending on how it is used:
+
+In an object method, `this` refers to the object.
+
+Alone, this refers to the global object.
+
+When used in a function, `this` refers to the global object.
+
+When used in an event, `this` refers to the element that received the event.
+
+&nbsp;
+
+&nbsp;
+
+## 📌 Functions can be used in intricate Object Methods
+
+The example below creates an object with 3 properties, firstName, lastName, fullName.
+
+```js
+const person = {
+	firstName: "John",
+	lastName: "Doe",
+	fullName: function () {
+		return this.firstName + " " + this.lastName;
+	},
+};
+
+// This will return "John Doe":
+console.log("You just created a person name " + person.fullName());
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
 
 ## 📌 A jQuery and AJAX Example This example shows how to use **jQuery** to fetch data from an external API using AJAX. ## 📜 HTML & jQuery Code ```html
 
