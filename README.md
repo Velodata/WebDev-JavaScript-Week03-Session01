@@ -313,60 +313,195 @@ console.log("You just created a person name " + person.fullName());
 
 &nbsp;
 
-## 📌 A jQuery and AJAX Example This example shows how to use **jQuery** to fetch data from an external API using AJAX. ## 📜 HTML & jQuery Code ```html
+# A Brief History of jQuery
 
+## Origins (2006)
+
+-   jQuery was created by John Resig and released in January 2006 at BarCamp NYC.
+
+-   At the time, JavaScript was clunky to work with due to cross-browser inconsistencies.
+
+-   Developers had to write separate code for Internet Explorer, Firefox, and Safari, making web development frustrating.
+
+## Why jQuery?
+
+-   JavaScript had no easy way to select HTML elements, manipulate the DOM, or handle AJAX requests.
+
+-   Developers had to use long, repetitive vanilla JS or rely on multiple libraries.
+
+-   jQuery was introduced as a lightweight, fast, and easy-to-use JavaScript library that simplified DOM manipulation.
+
+
+## Early Adoption (2006 - 2010)
+
+-   jQuery quickly became the most popular JavaScript library.
+-   It provided an easy way to do:
+    -   DOM selection: $("#element").hide();
+    -   Event handling: $("button").click(function() {...});
+    -   AJAX requests: $.ajax({...});
+    -   Animations: $("#box").fadeOut();
+-   By 2010, over 50% of top websites were using jQuery.
+
+## Peak Popularity (2010 - 2015)
+
+-   Major companies like Google, Microsoft, IBM, and Netflix adopted jQuery.
+-   jQuery UI and jQuery Mobile were introduced to help build interactive web apps and mobile-friendly websites.
+-   It was included by default in WordPress, Bootstrap, and many CMS platforms.
+
+## Is jQuery Still Relevant?
+
+-   While not as dominant, jQuery is still used in:
+-   Legacy projects that rely on older tech.
+-   WordPress and Bootstrap (though newer versions phase it out).
+-   Quick prototyping due to its simplicity.
+-   However, for new projects, many developers prefer modern frameworks.
+
+## jQuery in One Sentence
+
+*"jQuery was a game-changing JavaScript library that simplified web development by making DOM manipulation, event handling, and AJAX easy, but with the rise of modern JavaScript frameworks, its usage has declined."*
+
+Would you like a simple timeline graphic for your students?
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+# A Random User Generator
+
+# 🎯 Here's a jQuery AJAX + Radio Buttons + Formatted User example system
+
+### 🔥 Features:
+- ✅ **AJAX request** to fetch a **random user**.
+- ✅ **Dynamically populates a user card** with:
+  - 🏷️ Full Name
+  - 🌎 Country
+  - ✉️ Email
+  - 📷 Profile Picture
+- ✅ **Nicely formatted UI** using **CSS**.
+- ✅ **Radio buttons for gender selection**.
+
+---
+
+## 📜 HTML, CSS & jQuery Code
+```html
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>jQuery AJAX Example</title>
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	</head>
-	<body>
-		<h1>Random User Generator</h1>
-		<button id="fetchUser">Get Random User</button>
-		<p id="userInfo">Click the button to fetch a user.</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formatted AJAX User Data</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <style>
+        /* Center everything */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            background-color: #f4f4f4;
+        }
 
-    	<script>
-    		$(document).ready(function () {
-    			$("#fetchUser").click(function () {
-    				$.ajax({
-    					url: "https://randomuser.me/api/",
-    					method: "GET",
-    					success: function (data) {
-    						var user = data.results[0];
-    						var fullName = user.name.first + " " + user.name.last;
-    						$("#userInfo").html("User: <b>" + fullName + "</b>");
-    					},
-    					error: function () {
-    						$("#userInfo").html("Error fetching user.");
-    					},
-    				});
-    			});
-    		});
-    	</script>
-    </body>
+        /* Style the radio button container */
+        .radio-group {
+            display: flex;
+            flex-direction: column;  
+            align-items: center;     
+            gap: 10px;               
+            margin-bottom: 20px;
+        }
 
+        /* Button styling */
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* User Card */
+        .user-card {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .user-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .user-card p {
+            margin: 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Get a Random User</h1>
+
+    <!-- Radio Buttons for Gender Selection -->
+    <div class="radio-group">
+        <label>
+            <input type="radio" name="gender" value="male" checked> Male
+        </label>
+        <label>
+            <input type="radio" name="gender" value="female"> Female
+        </label>
+    </div>
+
+    <button id="fetchUser">Fetch User</button>
+
+    <!-- User Info Card -->
+    <div class="user-card" id="userCard" style="display: none;">
+        <img id="userImage" src="" alt="User Photo">
+        <p><strong>Name:</strong> <span id="userName"></span></p>
+        <p><strong>Country:</strong> <span id="userCountry"></span></p>
+        <p><strong>Email:</strong> <span id="userEmail"></span></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#fetchUser").click(function() {
+                var selectedGender = $("input[name='gender']:checked").val();
+
+                $.ajax({
+                    url: "https://randomuser.me/api/?gender=" + selectedGender,
+                    method: "GET",
+                    success: function(data) {
+                        var user = data.results[0];
+
+                        $("#userImage").attr("src", user.picture.medium);
+                        $("#userName").text(user.name.first + " " + user.name.last);
+                        $("#userCountry").text(user.location.country);
+                        $("#userEmail").text(user.email);
+
+                        $("#userCard").fadeIn();
+                    },
+                    error: function() {
+                        alert("Error fetching user.");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
 </html>
-````
-
-    For example:
-
-    ```js
-    let y = 123e5; // 12300000
-    let z = 123e-5; // 0.00123
-    ```
-
-    ### the JavaScript Big Integer
-
-    By default, all JavaScript numbers are stored in a 64-bit floating-point format.
-
-    However, a new datatype (ES2020) was recently introduced which can be used to store integer values that are
-    too big to be represented by a normal JavaScript Number.
-
-    For example:
-
-    ```js
-    let x = BigInt("123456789012345678901234567890");
-    ```
