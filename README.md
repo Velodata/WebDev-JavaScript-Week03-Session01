@@ -26,16 +26,16 @@ Examples of HTML events:
 -   When an HTML form is submitted
 -   When a user strokes a key
 
-In this example, the content of the <h1> element </h1> gets  changed when a user clicks on it:
+In this example, the content of the `<h1>` element gets  changed when a user clicks on it:
 
-    ```html
-    <!DOCTYPE html>
-    <html>
-        <body>
-            <h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!</h1>
-        </body>
-    </html>
-    ```
+```html
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!</h1>
+    </body>
+</html>
+```
 
 
 
