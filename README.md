@@ -122,8 +122,44 @@ The `onmouseover` and `onmouseout` events can be used to trigger a function when
 
 # Week 03 - JavaScript Functions
 
+So now it's time to learn about JavaScript functions. 
+
+At the end of learning about functions we will have a go at writing functions and changing elements using events in the Lessons included in this Repository.
+
+&nbsp;
+
+&nbsp;
+
+## 📌 JavaScript Function Definitions
+
+JavaScript functions are **defined** with the `function` keyword.
+
+You can use a function **declaration** or a function **expression**.
+
+&nbsp;
+
+&nbsp;
+
+## 📌 Function Declarations
+
+Functions are declared with the following syntax:
 
 
+```js
+function functionName(parameters) {
+// code to be executed
+}
+```
+
+Declared functions are not executed immediately. They are "saved for later use", and will be executed later, when they are invoked (called upon).
+
+-   Example
+
+```js
+function myFunction(a, b) {
+return a * b;
+}
+```
 
 
 ## 📌 A jQuery and AJAX Example This example shows how to use **jQuery** to fetch data from an external API using AJAX. ## 📜 HTML & jQuery Code ```html
