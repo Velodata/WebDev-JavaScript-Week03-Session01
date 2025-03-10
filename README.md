@@ -26,9 +26,21 @@ Examples of HTML events:
 -   When an HTML form is submitted
 -   When a user strokes a key
 
-In this example, the content of the <h1> element is changed when a user clicks on it:
+In this example, the content of the <h1> element </h1> gets  changed when a user clicks on it:
 
-## 📌 Query & AJAX Example
+    ```html
+    <!DOCTYPE html>
+    <html>
+        <body>
+            <h1 onclick="this.innerHTML = 'Ooops!'">Click on this text!</h1>
+        </body>
+    </html>
+    ```
+
+
+
+
+## 📌 A jQuery and AJAX Example
 
 This example shows how to use **jQuery** to fetch data from an external API using AJAX.
 
@@ -69,6 +81,7 @@ This example shows how to use **jQuery** to fetch data from an external API usin
 
 </body>
 </html>
+```
 
 
 
