@@ -12,11 +12,9 @@ Ultimately,  you will learn how to add cool event triggers to your web pages.
 
 ## 📌 Reacting to Events
 
-A JavaScript can be executed when an event occurs, like when a user clicks on an HTML element. 
+The cool thing about JavaScript events is we can execute specific code event occurs, like when a user clicks on an HTML element. 
 
-An event can cause JavaScript to be executed when say,  a user clicks on an element.
-
-Examples of HTML events:
+Some notable examples (but by no means all) of JavaScript events are:
 
 -   When a user clicks the mouse
 -   When a web page has loaded
@@ -24,9 +22,9 @@ Examples of HTML events:
 -   When the mouse moves over an element
 -   When an input field is changed
 -   When an HTML form is submitted
--   When a user strokes a key
+-   When a user enters a specific keystroke 
 
-In this example, the content of the `<h1>` element gets  changed when a user clicks on it:
+In this next example, the content of the `<h1>` element gets  changed when a user clicks on it:
 
 ```html
 <!DOCTYPE html>
@@ -37,6 +35,42 @@ In this example, the content of the `<h1>` element gets  changed when a user cli
 </html>
 ```
 
+
+
+## 📌 Some Notable Event Types
+
+ **INPUT EVENTS**
+ -  onChange | listens for a change that the user does to a field (input)
+ -  onFocus | user engages in the input field
+ -  onBlur | leave the area that had the focus
+ -  onSubmit | What happens after something is submitted
+ -  onReset | what happens when it is done and resets
+
+ **MOUSE EVENTS**
+ -  onMouseOver | mouse hovering
+ -  onMouseOut | When then mouse is removed from that hovering
+
+ **CLICK EVENTS**
+ -  onClick | what function occurs when the item clicked
+ -  onDblClick | same as above but with the double click
+
+ **LOAD EVENTS**
+ -  onLoad | what happens when the page loads, when an item loads
+ -  onError | Set that to be when an error occurs
+
+ **SCROLL**
+-   Watches for intersecting elements to trigger events
+
+
+## 📌 The oninput Event
+
+The `oninput` event is often use to perform a certain action when a user is entering data.
+
+Below is an example of how to use the oninput to change the content of an input field.
+
+```html
+<input type="text" id="fname" oninput="upperCase()">
+```
 
 
 
