@@ -88,7 +88,7 @@ Below is an example of how to use the onchange. The `upperCase()` function will 
 
 The `onmouseover` and `onmouseout` events can be used to trigger a function when the user mouses over, or out of, an HTML element:
 
--   Example: Mouse Over Me  -  we can run this code in Lesson 01 of this respository
+-   Example: Mouse Over Me - we can run this code in Lesson 01 of this respository
 
 ```html
 <!DOCTYPE html>
@@ -109,8 +109,6 @@ The `onmouseover` and `onmouseout` events can be used to trigger a function when
 </html>
 ```
 
-
-
 &nbsp;
 
 &nbsp;
@@ -118,11 +116,10 @@ The `onmouseover` and `onmouseout` events can be used to trigger a function when
 &nbsp;
 
 &nbsp;
-
 
 # Week 03 - JavaScript Functions
 
-So now it's time to learn about JavaScript functions. 
+So now it's time to learn about JavaScript functions.
 
 At the end of learning about functions we will have a go at writing functions and changing elements using events in the Lessons included in this Repository.
 
@@ -144,10 +141,9 @@ You can use a function **declaration** or a function **expression**.
 
 Functions are declared with the following syntax:
 
-
 ```js
 function functionName(parameters) {
-// code to be executed
+	// code to be executed
 }
 ```
 
@@ -157,12 +153,95 @@ Declared functions are not executed immediately. They are "saved for later use",
 
 ```js
 function myFunction(a, b) {
+	return a * b;
+}
+```
+
+&nbsp;
+
+&nbsp;
+
+## 📌 Function Expressions
+
+A JavaScript function can also be defined using an expression.
+
+A function expression can be stored in a variable:
+
+```js
+const x = function (a, b) {return a * b};
+
+```
+
+After a function expression has been stored in a variable, the variable can be used as a function:
+-   Example
+
+```js
+const x = function (a, b) {return a * b};
+let z = x(4, 3); 
+```
+
+
+
+&nbsp;
+
+&nbsp;
+
+## 📌 Functions Can Be Used as Values
+
+JavaScript functions can be used as values:
+
+In this next example we can how a variable `x` gets created by feeding it the output value of a function.
+
+```js
+function myFunction(a, b) {
 return a * b;
+}
+let x = myFunction(4, 3); 
+```
+
+
+&nbsp;
+
+&nbsp;
+
+## 📌 Using Parameters with JavaScript Functions
+
+A JavaScript function does not perform any checking on parameter values (arguments)
+
+-   JavaScript function definitions do not specify data types for parameters.
+
+-   JavaScript functions do not perform type checking on the passed arguments.
+
+-   JavaScript functions do not check the number of arguments received.
+
+
+```js
+function F0_Populate_ChildDataTable(laRowData, lcAction) {
+
+    if ($.fn.DataTable.isDataTable('#ChildDataTable')) //  YES!  initialised
+    {
+        $("#ChildDataTableContainer").empty();
+        $("#ChildDataTableContainer").append(F0_FormatChildDataTable());
+    }
+
+    var lcString = laRowData[0];
+    $("#Modal_Tyres_Single_Logo").attr('src', '/assets/img/LOGO_LARGE_' + lcString.toUpperCase() + '.png');
+    F0_Ajax_ChildDataTable(laRowData, lcAction);
+    format_column_width();
+
 }
 ```
 
 
+
+
+
+
+
+
+
 ## 📌 A jQuery and AJAX Example This example shows how to use **jQuery** to fetch data from an external API using AJAX. ## 📜 HTML & jQuery Code ```html
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -176,25 +255,26 @@ return a * b;
 		<button id="fetchUser">Get Random User</button>
 		<p id="userInfo">Click the button to fetch a user.</p>
 
-		<script>
-			$(document).ready(function () {
-				$("#fetchUser").click(function () {
-					$.ajax({
-						url: "https://randomuser.me/api/",
-						method: "GET",
-						success: function (data) {
-							var user = data.results[0];
-							var fullName = user.name.first + " " + user.name.last;
-							$("#userInfo").html("User: <b>" + fullName + "</b>");
-						},
-						error: function () {
-							$("#userInfo").html("Error fetching user.");
-						},
-					});
-				});
-			});
-		</script>
-	</body>
+    	<script>
+    		$(document).ready(function () {
+    			$("#fetchUser").click(function () {
+    				$.ajax({
+    					url: "https://randomuser.me/api/",
+    					method: "GET",
+    					success: function (data) {
+    						var user = data.results[0];
+    						var fullName = user.name.first + " " + user.name.last;
+    						$("#userInfo").html("User: <b>" + fullName + "</b>");
+    					},
+    					error: function () {
+    						$("#userInfo").html("Error fetching user.");
+    					},
+    				});
+    			});
+    		});
+    	</script>
+    </body>
+
 </html>
 ````
 
